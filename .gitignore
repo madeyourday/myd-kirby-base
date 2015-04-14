@@ -3,3 +3,6 @@
 !/thumbs/.gitkeep
 /assets/*
 !/assets/avatars
+/site/cache/*
+!/site/cache/index.html
+
