@@ -5,4 +5,7 @@
 !/assets/avatars
 /site/cache/*
 !/site/cache/index.html
-
+.sass-cache
+/node_modules
+/composer.phar
+/vendor
