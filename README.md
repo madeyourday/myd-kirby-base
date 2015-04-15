@@ -8,6 +8,16 @@ This is a starting platform for basic websites using Kirby CMS + Kirby Panel and
 - On-the-fly icon font generation via our [Icon Font Generator](https://github.com/madeyourday/SVG-Icon-Font-Generator)
 - Automatic image compression via TinyPNG
 
+## Starting a project
+
+1. Clone this base with `git clone --recursive https://github.com/madeyourday/myd-kirby-base.git new-project`
+
+2. Run `npm install` in the new project directory. Everything else is automatically setup via npm and composer.
+
+## Support
+
+We do not support this in any way. If you know how to use it you are welcome to make your worflow more efficient and fun.
+
 ## Dependencies
 
 ### Node.js
@@ -17,14 +27,6 @@ The whole grunt workflow relies on [Node.js](https://nodejs.org/) and its packag
 ### grunt-cli
 
 You need [grunt-cli](https://github.com/gruntjs/grunt-cli) on your system to start the workflow via the `grunt` command. We'd recommend to install it globally via `npm install -g grunt-cli`. But you can also install it locally on a per project basis via `npm install grunt-cli --save-dev`.
-
-## Setup
-
-Just run `npm install` in the project directory. Everything is automatically setup via npm and composer.
-
-## Support
-
-We do not support this in any way. If you know how to use it you are welcome to make your worflow more efficient and fun.
 
 ## License
 
