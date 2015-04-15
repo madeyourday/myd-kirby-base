@@ -1,0 +1,5 @@
+{
+    "require": {
+        "madeyourday/svg-icon-font-generator": "dev-master"
+    }
+}
