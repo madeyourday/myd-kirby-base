@@ -113,6 +113,7 @@ module.exports = function(grunt) {
 			assets: {
 				src: [
 					'assets/**/*',
+					'!assets/avatars/*',
 					'!assets/images/*',
 					'!assets/temp/image_md5s.json',
 				],
