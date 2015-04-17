@@ -77,14 +77,68 @@ module.exports = function(grunt) {
 				}],
 			},
 		},
+		watch: {
+			sass: {
+				files: ['assets-src/css/*.sass'],
+				tasks: ['sass:main', 'postcss'],
+			},
+			images: {
+				files: ['assets-src/images/**/*'],
+				tasks: ['tinypng', 'sass:main', 'postcss'],
+			},
+			js: {
+				files: ['assets-src/js/**/*', '!assets-src/js/main.js'],
+				tasks: ['jshint', 'concat'],
+			},
+			livereload: {
+				files: [
+					'assets/**/*',
+					'!assets/temp/**/*',
+					'content/**/*.md',
+					'site/**/*',
+					'!site/cache/*',
+				],
+				options: {
+					livereload: true,
+				},
+			},
+		},
+		jshint: {
+			files: ['assets-src/js/script.js'],
+			options: {
+				laxbreak: true,
+			},
+		},
+		clean: {
+			assets: {
+				src: [
+					'assets/**/*',
+					'!assets/images/*',
+					'!assets/temp/image_md5s.json',
+				],
+				filter: 'isFile',
+			},
+			images: {
+				src: [
+					'assets/images/**/*',
+				],
+				filter: function(src) {
+					return !grunt.file.exists('assets-src/' + src.substr(7));
+				},
+			},
+			build: ['site/cache/**/*'],
+		},
 	});
 
 	// Grunt Tasks
-	grunt.loadNpmTasks('grunt-sass');
-	grunt.loadNpmTasks('grunt-postcss');
-	grunt.loadNpmTasks('grunt-tinypng');
-	grunt.loadNpmTasks('grunt-contrib-copy'); // currently not used
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-postcss');
+	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-tinypng');
 
 	grunt.registerTask('iconfont', 'Create icon font from SVG icons', function() {
 
@@ -106,7 +160,7 @@ module.exports = function(grunt) {
 	});
 
 	// Custom Tasks
-	grunt.registerTask('default', ['iconfont', 'sass:main', 'postcss', 'concat', 'tinypng', 'copy:fonts']);
-	grunt.registerTask('build', ['iconfont', 'sass:build', 'postcss', 'concat', 'tinypng', 'copy:fonts']);
+	grunt.registerTask('default', ['clean:assets', 'clean:images', 'iconfont', 'sass:main', 'postcss', 'concat', 'tinypng', 'copy:fonts']);
+	grunt.registerTask('build', ['clean:assets', 'clean:images', 'iconfont', 'sass:build', 'postcss', 'concat', 'tinypng', 'copy:fonts', 'clean:build']);
 
 };
