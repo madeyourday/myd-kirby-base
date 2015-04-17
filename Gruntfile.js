@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 		},
 		concat: {
 			options: {
-				separator: ';',
+				separator: '\n;',
 			},
 			dist: {
 				src: ['node_modules/jquery/dist/jquery.min.js', 'assets-src/js/script.js'],
