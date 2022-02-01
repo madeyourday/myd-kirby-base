@@ -7,6 +7,9 @@ var shell = require('shelljs');
 
 module.exports = function(grunt) {
 
+	// Load JIT Grunt
+	require('jit-grunt')(grunt);
+
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -81,6 +84,9 @@ module.exports = function(grunt) {
 			sass: {
 				files: ['assets-src/css/*.sass'],
 				tasks: ['sass:main', 'postcss'],
+				options: {
+					spawn: false,
+				},
 			},
 			images: {
 				files: ['assets-src/images/**/*'],
@@ -130,16 +136,6 @@ module.exports = function(grunt) {
 			build: ['site/cache/**/*'],
 		},
 	});
-
-	// Grunt Tasks
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-postcss');
-	grunt.loadNpmTasks('grunt-sass');
-	grunt.loadNpmTasks('grunt-tinypng');
 
 	grunt.registerTask('iconfont', 'Create icon font from SVG icons', function() {
 
